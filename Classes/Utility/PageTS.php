@@ -7,6 +7,7 @@ namespace T3\Dce\Utility;
  *  | (c) 2012-2019 Armin Vieweg <armin@v.ieweg.de>
  */
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -32,8 +33,7 @@ class PageTS
     {
         $id = $id ?: GeneralUtility::_GP('id');
         if (!isset(static::$pageTsContent[$id])) {
-            /** @var \TYPO3\CMS\Extbase\Service\TypoScriptService $typoScriptService */
-            $typoScriptService = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Service\TypoScriptService');
+            $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
             static::$pageTsContent[$id] = $typoScriptService->convertTypoScriptArrayToPlainArray(
                 BackendUtility::getPagesTSconfig($id)
             );

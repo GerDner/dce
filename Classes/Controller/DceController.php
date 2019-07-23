@@ -79,7 +79,7 @@ class DceController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         if ($dce->getEnableContainer()) {
             if (ContainerFactory::checkContentElementForBeingRendered($dce->getContentObject())) {
                 ContainerFactory::clearContentElementsToSkip($dce->getContentObject());
-                return '';
+                return ' ';
             }
             $container = ContainerFactory::makeContainer($dce);
             
